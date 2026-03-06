@@ -1,0 +1,12 @@
+{
+  "name": "my-plugin",
+  "displayName": "Team Plugin",
+  "version": "1.0.0",
+  "description": "Team Cursor configuration: shared skills, rules, and MCP servers for WPF and SQL Server projects.",
+  "author": {
+    "name": "Your Team"
+  },
+  "license": "UNLICENSED",
+  "skills": "./skills/",
+  "rules": "./rules/"
+}

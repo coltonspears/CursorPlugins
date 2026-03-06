@@ -1,0 +1,13 @@
+---
+description: Team coding standards applied across all repositories
+---
+
+# Coding standards
+
+- Use consistent naming: PascalCase for classes and public members, camelCase for local variables and parameters.
+- Keep methods under 30 lines. Extract helper methods for complex logic.
+- Every public API must have XML doc comments (C#) or JSDoc (TypeScript).
+- No magic numbers — use named constants.
+- Prefer early returns over deeply nested conditionals.
+- All async methods must propagate cancellation tokens where available.
+- Do not commit commented-out code. Remove dead code before merging.

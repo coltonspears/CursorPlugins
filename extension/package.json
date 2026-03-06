@@ -1,0 +1,164 @@
+{
+  "name": "cursor-team-tools",
+  "displayName": "Cursor Team Tools",
+  "description": "Deploy team Cursor configuration (skills, rules, MCP) to workspaces with automatic single-repo and multi-repo layout detection.",
+  "version": "0.2.0",
+  "publisher": "your-team",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "cursorTeamTools.sync",
+        "title": "Cursor Team Tools: Sync Config",
+        "icon": "$(sync)"
+      },
+      {
+        "command": "cursorTeamTools.selectProfile",
+        "title": "Cursor Team Tools: Select Profile"
+      },
+      {
+        "command": "cursorTeamTools.locatePluginRepo",
+        "title": "Cursor Team Tools: Locate Plugin Repo"
+      },
+      {
+        "command": "cursorTeamTools.checkForUpdates",
+        "title": "Cursor Team Tools: Check for Updates"
+      }
+    ],
+    "viewsContainers": {
+      "activityBar": [
+        {
+          "id": "cursorTeamTools",
+          "title": "Cursor Team Tools",
+          "icon": "$(tools)"
+        }
+      ]
+    },
+    "views": {
+      "cursorTeamTools": [
+        {
+          "id": "cursorTeamTools.status",
+          "name": "Status"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "cursorTeamTools.sync",
+          "when": "view == cursorTeamTools.status",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Cursor Team Tools",
+      "properties": {
+        "cursorTeamTools.pluginRepoPath": {
+          "type": "string",
+          "default": "",
+          "description": "Absolute path to the CursorPlugins repo. If empty, auto-detected as a sibling or subfolder named 'CursorPlugins'."
+        },
+        "cursorTeamTools.repoProfiles": {
+          "type": "object",
+          "default": {
+            "WPFApp": "wpf",
+            "WPFAdmin": "wpf",
+            "SqlServerDB": "sql"
+          },
+          "description": "Maps repository folder names to profile names. Profiles correspond to frontmatter tags in the plugin's skills and rules.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "cursorTeamTools.autoSyncOnStartup": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically deploy .cursor/ configuration when a workspace opens."
+        },
+        "cursorTeamTools.checkForUpdatesOnStartup": {
+          "type": "boolean",
+          "default": true,
+          "description": "Check the plugin repo for updates when the workspace opens and prompt to re-sync."
+        }
+      }
+    },
+    "walkthroughs": [
+      {
+        "id": "cursorTeamTools.setup",
+        "title": "Cursor Team Tools Setup",
+        "description": "Configure and deploy team Cursor skills, rules, and MCP servers to your workspace.",
+        "steps": [
+          {
+            "id": "welcome",
+            "title": "Welcome",
+            "description": "Cursor Team Tools deploys shared skills, rules, and MCP configuration from your team's CursorPlugins repo to your workspace's `.cursor/` directory. It automatically detects whether you opened a single repo or a parent directory and adapts accordingly.",
+            "media": {
+              "markdown": ""
+            }
+          },
+          {
+            "id": "locateRepo",
+            "title": "Locate Plugin Repo",
+            "description": "Point the extension to your CursorPlugins repository. It will auto-detect if it's a sibling or subfolder of your workspace.\n\n[Locate Plugin Repo](command:cursorTeamTools.locatePluginRepo)",
+            "media": {
+              "markdown": ""
+            },
+            "completionEvents": [
+              "onSettingChanged:cursorTeamTools.pluginRepoPath"
+            ]
+          },
+          {
+            "id": "configureProfiles",
+            "title": "Configure Repo Profiles",
+            "description": "Map your repository folder names to profiles. Each profile selects which skills and rules apply to that repo type.\n\n[Open Settings](command:workbench.action.openSettings?%22cursorTeamTools.repoProfiles%22)",
+            "media": {
+              "markdown": ""
+            }
+          },
+          {
+            "id": "deploy",
+            "title": "Deploy Configuration",
+            "description": "Run the sync command to deploy your `.cursor/` directory with the correct skills and rules for this workspace.\n\n[Sync Now](command:cursorTeamTools.sync)",
+            "media": {
+              "markdown": ""
+            },
+            "completionEvents": [
+              "onCommand:cursorTeamTools.sync"
+            ]
+          },
+          {
+            "id": "autoUpdates",
+            "title": "Enable Auto-Update Checks",
+            "description": "Turn on startup update checks so you're notified when the plugin repo is updated.\n\n[Open Settings](command:workbench.action.openSettings?%22cursorTeamTools.checkForUpdatesOnStartup%22)",
+            "media": {
+              "markdown": ""
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "build": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "package": "vsce package",
+    "lint": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^20.11.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.7.0",
+    "@vscode/vsce": "^3.2.0"
+  }
+}

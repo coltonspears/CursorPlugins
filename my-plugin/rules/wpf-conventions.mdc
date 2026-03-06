@@ -1,0 +1,17 @@
+---
+description: WPF and XAML conventions for MVVM architecture
+profiles: [wpf]
+---
+
+# WPF conventions
+
+- Follow MVVM strictly: Views bind to ViewModels, ViewModels never reference Views.
+- Name ViewModels as `{Feature}ViewModel` (e.g. `OrderListViewModel`).
+- Name Views as `{Feature}View` (e.g. `OrderListView`).
+- Place ViewModels in a `ViewModels/` folder and Views in a `Views/` folder.
+- Use `RelayCommand` or `DelegateCommand` for ICommand implementations — do not create ad-hoc command classes.
+- Use `ObservableCollection<T>` for any collection bound to a UI list control.
+- All long-running operations must be async and update the UI via `Dispatcher` or binding.
+- Use resource dictionaries in `Themes/` or `Styles/` for shared styles and templates.
+- Avoid `x:Name` in XAML when data binding can achieve the same result.
+- Use `DesignInstance` for design-time data so views render in the XAML designer.

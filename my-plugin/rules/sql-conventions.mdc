@@ -1,0 +1,17 @@
+---
+description: SQL Server naming and scripting conventions for the database repository
+profiles: [sql]
+---
+
+# SQL conventions
+
+- Use PascalCase for table and column names (e.g. `OrderHeader`, `CustomerId`).
+- Prefix stored procedures with `usp_` (e.g. `usp_GetOrdersByCustomer`).
+- Prefix user-defined functions with `udf_` (e.g. `udf_CalculateDiscount`).
+- Prefix views with `vw_` (e.g. `vw_ActiveCustomers`).
+- Every table must have a primary key. Prefer `INT IDENTITY` or `BIGINT IDENTITY` unless there is a natural key.
+- Include `CreatedDate` and `ModifiedDate` columns with default constraints on all business tables.
+- Use schema prefixes explicitly (e.g. `dbo.OrderHeader`, not just `OrderHeader`).
+- Migration scripts must be idempotent — wrap DDL in `IF NOT EXISTS` / `IF COL EXISTS` guards.
+- Never use `SELECT *` in stored procedures or views — enumerate columns explicitly.
+- Add a header comment block to every stored procedure with: purpose, author, date, and change log.

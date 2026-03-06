@@ -1,0 +1,38 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Test: Multi-Repo (C:\\SourceControl)",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "C:\\SourceControl",
+        "--extensionDevelopmentPath=${workspaceFolder}"
+      ],
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+      "preLaunchTask": "${defaultBuildTask}"
+    },
+    {
+      "name": "Test: Single-Repo WPFApp",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "C:\\SourceControl\\WPFApp",
+        "--extensionDevelopmentPath=${workspaceFolder}"
+      ],
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+      "preLaunchTask": "${defaultBuildTask}"
+    },
+    {
+      "name": "Test: Single-Repo SqlServerDB",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "C:\\SourceControl\\SqlServerDB",
+        "--extensionDevelopmentPath=${workspaceFolder}"
+      ],
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+      "preLaunchTask": "${defaultBuildTask}"
+    }
+  ]
+}

@@ -2,8 +2,8 @@
   "name": "cursor-team-tools",
   "displayName": "Cursor Team Tools",
   "description": "Deploy team Cursor configuration (skills, rules, MCP) to workspaces with automatic single-repo and multi-repo layout detection.",
-  "version": "0.2.0",
-  "publisher": "your-team",
+  "version": "0.2.1",
+  "publisher": "colton-spears",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -32,22 +32,17 @@
       {
         "command": "cursorTeamTools.checkForUpdates",
         "title": "Cursor Team Tools: Check for Updates"
+      },
+      {
+        "command": "cursorTeamTools.openWalkthrough",
+        "title": "Cursor Team Tools: Open Setup Guide"
       }
     ],
-    "viewsContainers": {
-      "activityBar": [
-        {
-          "id": "cursorTeamTools",
-          "title": "Cursor Team Tools",
-          "icon": "$(tools)"
-        }
-      ]
-    },
     "views": {
-      "cursorTeamTools": [
+      "explorer": [
         {
           "id": "cursorTeamTools.status",
-          "name": "Status"
+          "name": "Cursor Team Tools"
         }
       ]
     },
@@ -101,17 +96,17 @@
           {
             "id": "welcome",
             "title": "Welcome",
-            "description": "Cursor Team Tools deploys shared skills, rules, and MCP configuration from your team's CursorPlugins repo to your workspace's `.cursor/` directory. It automatically detects whether you opened a single repo or a parent directory and adapts accordingly.",
+            "description": "Learn what Cursor Team Tools does and how it works.",
             "media": {
-              "markdown": ""
+              "markdown": "media/walkthrough/welcome.md"
             }
           },
           {
             "id": "locateRepo",
             "title": "Locate Plugin Repo",
-            "description": "Point the extension to your CursorPlugins repository. It will auto-detect if it's a sibling or subfolder of your workspace.\n\n[Locate Plugin Repo](command:cursorTeamTools.locatePluginRepo)",
+            "description": "Point the extension to your CursorPlugins repository.\n\n[Locate Plugin Repo](command:cursorTeamTools.locatePluginRepo)",
             "media": {
-              "markdown": ""
+              "markdown": "media/walkthrough/locate-repo.md"
             },
             "completionEvents": [
               "onSettingChanged:cursorTeamTools.pluginRepoPath"
@@ -120,17 +115,17 @@
           {
             "id": "configureProfiles",
             "title": "Configure Repo Profiles",
-            "description": "Map your repository folder names to profiles. Each profile selects which skills and rules apply to that repo type.\n\n[Open Settings](command:workbench.action.openSettings?%22cursorTeamTools.repoProfiles%22)",
+            "description": "Map repo folder names to profiles.\n\n[Open Settings](command:workbench.action.openSettings?%22cursorTeamTools.repoProfiles%22)",
             "media": {
-              "markdown": ""
+              "markdown": "media/walkthrough/configure-profiles.md"
             }
           },
           {
             "id": "deploy",
             "title": "Deploy Configuration",
-            "description": "Run the sync command to deploy your `.cursor/` directory with the correct skills and rules for this workspace.\n\n[Sync Now](command:cursorTeamTools.sync)",
+            "description": "Deploy .cursor/ to your workspace.\n\n[Sync Now](command:cursorTeamTools.sync)",
             "media": {
-              "markdown": ""
+              "markdown": "media/walkthrough/deploy.md"
             },
             "completionEvents": [
               "onCommand:cursorTeamTools.sync"
@@ -139,9 +134,9 @@
           {
             "id": "autoUpdates",
             "title": "Enable Auto-Update Checks",
-            "description": "Turn on startup update checks so you're notified when the plugin repo is updated.\n\n[Open Settings](command:workbench.action.openSettings?%22cursorTeamTools.checkForUpdatesOnStartup%22)",
+            "description": "Get notified when the plugin repo is updated.\n\n[Open Settings](command:workbench.action.openSettings?%22cursorTeamTools.checkForUpdatesOnStartup%22)",
             "media": {
-              "markdown": ""
+              "markdown": "media/walkthrough/auto-updates.md"
             }
           }
         ]

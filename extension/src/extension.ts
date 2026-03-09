@@ -25,6 +25,13 @@ export function activate(context: vscode.ExtensionContext): void {
       statusTree.refresh();
     }),
     vscode.commands.registerCommand("cursorTeamTools.checkForUpdates", checkForUpdatesCommand),
+    vscode.commands.registerCommand("cursorTeamTools.openWalkthrough", () => {
+      vscode.commands.executeCommand(
+        "workbench.action.openWalkthrough",
+        "your-team.cursor-team-tools#cursorTeamTools.setup",
+        false
+      );
+    }),
     vscode.window.registerTreeDataProvider("cursorTeamTools.status", statusTree)
   );
 
